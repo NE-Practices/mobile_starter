@@ -1,10 +1,12 @@
 /* eslint-disable react/display-name */
 import React, { useEffect, useState, useCallback } from "react";
-import { Alert ,
+import {
+  Alert,
   FlatList,
   Text,
   View,
   Image,
+  TextInput,
   TouchableOpacity,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -43,8 +45,10 @@ export default function ProductsScreen() {
   const [products, setProducts] = useState<
     { id: number; title: string; price: number; image: string }[]
   >([]);
+  const [searchQuery, setSearchQuery] = useState(""); // 🔍 Search query state
   const router = useRouter();
   const isFocused = useIsFocused();
+
   const handleDelete = async (item: any) => {
     Alert.alert(
       "Delete Product",
@@ -68,27 +72,31 @@ export default function ProductsScreen() {
     );
   };
 
-const handleEdit = (item: any) => {
-  router.push({
-    pathname: "/product/edit",
-    params: { product: JSON.stringify(item) },
-  });
-};
-
-useEffect(() => {
-  const fetchProducts = async () => {
-    try {
-      const data = await getProducts();
-      setProducts(data);
-    } catch (error) {
-      console.error("Failed to fetch products:", error);
-    }
+  const handleEdit = (item: any) => {
+    router.push({
+      pathname: "/product/edit",
+      params: { product: JSON.stringify(item) },
+    });
   };
 
-  if (isFocused) {
-    fetchProducts();
-  }
-}, [isFocused]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
+    if (isFocused) {
+      fetchProducts();
+    }
+  }, [isFocused]);
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderItem = useCallback(
     ({ item }: any) => (
@@ -111,8 +119,17 @@ useEffect(() => {
   return (
     <View className="p-4 bg-gray-100 flex-1">
       <Text className="font-bold text-lg py-2">Available products</Text>
+
+      {/* Search Input */}
+      <TextInput
+        placeholder="Search by name..."
+        className="bg-white px-4 py-4 mb-4 rounded-md border border-gray-300"
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
+
       <FlatList
-        data={[...products].reverse()}
+        data={[...filteredProducts].reverse()}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         initialNumToRender={8}
@@ -120,6 +137,11 @@ useEffect(() => {
         removeClippedSubviews={true}
         maxToRenderPerBatch={10}
         windowSize={5}
+        ListEmptyComponent={
+          <Text className="text-center text-gray-500 mt-10">
+            No products found.
+          </Text>
+        }
       />
     </View>
   );

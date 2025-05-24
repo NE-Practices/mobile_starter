@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_BASE_URL = "http://192.168.0.2:4040/api/v1";
+const API_BASE_URL = "http://10.12.72.107:4060/api/v1";
 
 export interface LoginResponse {
   user: any;
