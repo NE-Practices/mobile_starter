@@ -1,16 +1,16 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  View,
-  Text,
-  Pressable,
+  ActivityIndicator,
   Alert,
   Image,
-  ActivityIndicator,
+  Pressable,
+  Text,
+  View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { register } from "../../services/auth.service";
-import { useRouter } from "expo-router";
 import { CustomInput } from "../../components/shared/customInput";
+import { register } from "../../services/auth.service";
 
 export default function RegisterScreen({ navigation }: any) {
   const [username, setUsername] = useState("");
@@ -77,7 +77,7 @@ export default function RegisterScreen({ navigation }: any) {
         />
 
         <Pressable
-          className={`bg-[#114775] rounded-lg py-6 mb-4 ${
+          className={`bg-[#114775] rounded-lg py-3 mb-4 ${
             loading ? "opacity-60" : "opacity-100"
           }`}
           onPress={handleRegister}

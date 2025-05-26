@@ -15,7 +15,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <View className="flex-row items-center border border-gray-300 rounded-lg px-3 py-3 mb-4 bg-white">
+    <View className="flex-row items-center border border-gray-300 rounded-lg px-3 mb-4 bg-white">
       <View className="mr-2">{icon}</View>
       <TextInput
         className="flex-1 text-lg"

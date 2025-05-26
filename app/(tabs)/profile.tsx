@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { fetchUserProfile } from "../../services/auth.service"; // import the correct service
+import { fetchUserProfile } from "../../services/auth.service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 
@@ -70,7 +70,7 @@ export default function ProfileScreen() {
           resizeMode="contain"
         />
         <Text className="text-2xl font-bold text-gray-800 mb-1">
-          {user.name?.firstname ?? user.names} {user.name?.lastname ?? ""}
+          {user.name?.firstname ?? user.username} {user.name?.lastname ?? ""}
         </Text>
         <Text className="text-gray-500 text-base">{user.email}</Text>
         <Text className="text-gray-500 text-base">
