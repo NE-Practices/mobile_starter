@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import {
   View,
-  TextInput,
   Text,
   Pressable,
   Alert,
   Image,
   ActivityIndicator,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { register } from "../../services/auth.service";
 import { useRouter } from "expo-router";
+import { CustomInput } from "../../components/shared/customInput";
 
 export default function RegisterScreen({ navigation }: any) {
   const [username, setUsername] = useState("");
@@ -45,38 +46,38 @@ export default function RegisterScreen({ navigation }: any) {
       </Text>
 
       <View className="w-full max-w-md">
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-4 text-base"
+        <CustomInput
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
           autoCapitalize="none"
+          icon={<Ionicons name="person-outline" size={20} color="#888" />}
         />
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-4 text-base"
+        <CustomInput
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
           keyboardType="email-address"
+          icon={<Ionicons name="mail-outline" size={20} color="#888" />}
         />
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-4 text-base"
+        <CustomInput
           placeholder="Phone Number"
           value={phone}
           onChangeText={setPhone}
           keyboardType="phone-pad"
+          icon={<Ionicons name="call-outline" size={20} color="#888" />}
         />
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-6 text-base"
+        <CustomInput
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          isPassword
+          icon={<Ionicons name="lock-closed-outline" size={20} color="#888" />}
         />
 
         <Pressable
-          className={`bg-[#114775] rounded-lg py-3 mb-4 ${
+          className={`bg-[#114775] rounded-lg py-6 mb-4 ${
             loading ? "opacity-60" : "opacity-100"
           }`}
           onPress={handleRegister}

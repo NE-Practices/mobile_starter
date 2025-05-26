@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  TextInput,
   Text,
   Pressable,
   Alert,
@@ -10,6 +9,8 @@ import {
 } from "react-native";
 import { login } from "../../services/auth.service";
 import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { CustomInput } from "../../components/shared/customInput";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -43,23 +44,24 @@ export default function LoginScreen() {
       </Text>
 
       <View className="w-full max-w-md">
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-4 text-base"
+        <CustomInput
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
-          autoCapitalize="none"
           keyboardType="email-address"
+          autoCapitalize="none"
+          icon={<Ionicons name="mail" size={20} color="#888" />}
         />
-        <TextInput
-          className="border border-gray-300 rounded-lg px-4 py-3 mb-6 text-base"
+        <CustomInput
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          isPassword
+          icon={<Ionicons name="lock-closed" size={20} color="#888" />}
         />
+
         <Pressable
-          className={`bg-[#114775] rounded-lg py-3 mb-4 ${
+          className={`bg-[#114775] rounded-lg py-6 mb-4 ${
             loading ? "opacity-60" : "opacity-100"
           }`}
           onPress={handleLogin}

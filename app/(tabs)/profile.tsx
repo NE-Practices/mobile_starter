@@ -20,6 +20,7 @@ export default function ProfileScreen() {
     const fetchUser = async () => {
       try {
         const data = await fetchUserProfile();
+        console.log("Fetched user data:", data);
         setUser(data);
       } catch (error) {
         console.error("Failed to fetch user:", error);

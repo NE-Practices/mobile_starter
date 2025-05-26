@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { getProductById } from "../../services/product.service";
+
 interface Product {
   id: number;
   title: string;
@@ -34,42 +35,42 @@ export default function ProductDetailScreen() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-        <Text>Loading product...</Text>
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#114775" />
+        <Text className="mt-4 text-gray-600 text-base">Loading product...</Text>
       </View>
     );
   }
 
   if (!product) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Product not found.</Text>
+      <View className="flex-1 justify-center items-center bg-white">
+        <Text className="text-lg font-semibold text-gray-700">
+          Product not found.
+        </Text>
       </View>
     );
   }
 
   return (
-    <ScrollView  className="p-10 bg-white">
-      <Image
-        source={{ uri: product.image }}
-        style={{ width: 256, height: 256, marginBottom: 16 }}
-        resizeMode="contain"
-      />
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: "bold",
-          marginBottom: 8,
-          textAlign: "center",
-        }}
-      >
+    <ScrollView className="flex-1 bg-white p-6">
+      <View className="items-center mb-6">
+        <Image
+          source={{ uri: product.image }}
+          className="w-64 h-64 rounded-lg"
+          resizeMode="contain"
+        />
+      </View>
+
+      <Text className="text-2xl font-bold text-center text-[#114775] mb-2">
         {product.title}
       </Text>
-      <Text style={{ fontSize: 18, color: "#666", marginBottom: 16 }}>
+
+      <Text className="text-xl text-gray-600 text-center mb-4">
         ${product.price}
       </Text>
-      <Text style={{ fontSize: 16, textAlign: "center" }}>
+
+      <Text className="text-base text-gray-700 text-center leading-relaxed">
         {product.description}
       </Text>
     </ScrollView>

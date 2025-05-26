@@ -17,7 +17,7 @@ export default function DropdownMenu({ onEdit, onDelete }: DropdownMenuProps) {
       </TouchableOpacity>
 
       {visible && (
-        <View className="absolute top-7 right-0 bg-white rounded-md shadow-xl z-50 w-32">
+        <View className="absolute top-7 right-0 bg-white rounded-md shadow-xl z-50 w-32" >
           <TouchableOpacity
             className="p-2 border-b border-gray-200"
             onPress={() => {
