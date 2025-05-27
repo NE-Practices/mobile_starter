@@ -1,16 +1,50 @@
 # 🚀 Mobile Starter 2025
 
-A modern, slightly rebellious mobile starter kit for 2025 — built to get you moving *fast* ⚡
+A fast, modern mobile starter kit using **React Native + Mock APIs** — built to get you moving *fast* ⚡
+
+---
 
 ## 🔧 Features
 
-- 🔐 **Authentication** via the #restful starter backend (because [mockapi.io](https://mockapi.io) refuses to manage your secrets 😤)
-- ⚙️ **CRUD operations** handled using [mockapi.io](https://mockapi.io) — our beloved fake data sidekick 💾
-- 📱 Designed for mobile apps that want to look good and move fast
-- 🧪 Perfect for prototyping, hacking, or just faking it till you make it
+- 🔐 Simple **Authentication** using `AsyncStorage` (login, register, fetch profile)
+- ⚙️ Full **CRUD support** for products with [mockapi.io](https://mockapi.io)
+- 📱 **Mobile-first** UI design powered by Expo
+- 🧪 Perfect for prototyping, testing, or bootstrapping your next mobile app
 
-## 🧰 Tech Stack
+---
 
-- Frontend: React Native / Expo (or whatever mobile framework you love)
-- Backend Auth: #restful-starter BE
-- Mock API: [mockapi.io](https://mockapi.io)
+## 🧠 How It Works (Quick Overview)
+
+### ✅ Login
+
+```ts
+await login("user01@gmail.com", "Test@123");
+// Stores user and token in AsyncStorage
+```
+
+## Register
+
+```ts
+await register("New User", "email@example.com", "password123", "1234567890");
+```
+
+## 👤 Fetch Profile
+
+## Product MockAPI CRUD
+
+```ts
+await getProducts();                      // Fetch all products
+await getProductById(1);                  // Fetch product by ID
+await createProduct({ name: "Sample" });  // Create new product
+await updateProductById(1, { name: "Updated" }); // Update product
+await deleteProductById(1);               // Delete product
+```
+
+
+## Getting Started
+
+```
+npm install
+npx expo start
+
+```
